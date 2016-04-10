@@ -1,0 +1,4 @@
+alias mv="mv --interactive"
+alias cp="cp --interactive"
+
+alias rm="echo 'Please use trash instead.' && echo '$1' > /dev/null"

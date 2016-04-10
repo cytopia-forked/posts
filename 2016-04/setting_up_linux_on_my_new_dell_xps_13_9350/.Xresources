@@ -1,0 +1,8 @@
+Rxvt.font: xft:DejaVu Sans Mono:size=8.5
+Rxvt.background: rgb:0000/0000/0000
+Rxvt.foreground: rgb:ffff/ffff/ffff
+Rxvt.scrollBar: false
+
+Xft.dpi: 192
+
+Xcursor.size: 32

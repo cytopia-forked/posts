@@ -1,0 +1,54 @@
+general {
+        colors = true
+        interval = 5
+}
+
+order += "volume master"
+order += "wireless _first_"
+order += "run_watch VPN"
+order += "cpu_usage"
+order += 'cpu_temperature 0'
+order += 'cpu_temperature 1'
+order += "battery 0"
+order += "tztime local"
+
+volume master {
+	device = "default"
+	mixer = "Master"
+}
+
+wireless _first_ {
+        format_up = "W: %ip @ (%essid %quality)"
+        format_down = "W: down"
+}
+
+run_watch VPN {
+        pidfile = "/var/run/vpnc/pid"
+}
+
+cpu_usage {
+	format = "CPU: %usage"
+}
+
+cpu_temperature 0 {
+	format = "T1: %degrees C" 
+	path = /sys/devices/virtual/thermal/thermal_zone5/temp
+}
+
+cpu_temperature 1 {
+	format = "T2: %degrees C"
+	path = /sys/devices/virtual/thermal/thermal_zone6/temp
+}
+
+battery 0 {
+    format = "%status %percentage (%remaining @ %consumption)"
+	hide_seconds = true
+	low_threshold = 20
+	threshold_type = percentage
+	integer_battery_capacity = true
+	last_full_capacity = true 
+}
+
+tztime local {
+        format = "%A, %d %b %Y %H:%M:%S"
+}
