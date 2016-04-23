@@ -97,7 +97,8 @@ After installing you need to create a `fonts.dir` file. Browse to `/usr/share/fo
 Use `trash <file>` to delete `trash-list` to view and `trash-empty` to empty instead of rm. Also use a bash alias to override `rm`.
 
 ```bash
-alias rm="echo 'Please use trash instead.' && echo '$1' > /dev/null
+alias rm="echo 'Please use trash instead.' && /bin/false"
+alias rmdir="echo 'Please use trash instead.' && /bin/false"
 ```
 
 ### Wifi
