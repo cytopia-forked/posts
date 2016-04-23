@@ -1,37 +1,80 @@
-# Windows key
 set $mod Mod4
 
+# Font
 font pango:DejaVu Sans Mono 8
 
-# Use Mouse+$mod to drag floating windows to their wanted position.
-floating_modifier $mod
-
-# Start terminal
+# Bind keys to launch applications
 bindsym $mod+Return exec urxvt
+bindsym $mod+d exec dmenu_run -fn "-*-dejavu sans-*-r-*-*-18-*-*-*-*-*-*-*" -p "launch "
 
-# Kill focused window
+# Kill window
 bindsym $mod+q kill
 
-# Start dmenu
-bindsym $mod+d exec dmenu_run -fn "-*-dejavu sans-*-r-*-*-18-*-*-*-*-*-*-*" -p "find "
-
-# Change focus with arrow keys
+# Move window focus
 bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
 
-# Move focused window with arrow keys
+# Move window position
 bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
 
-# Split horizontally
+# Resize window
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # Rough resize
+        bindsym Shift+Left resize shrink width 100 px or 100 ppt
+        bindsym Shift+Down resize grow height 100 px or 100 ppt
+        bindsym Shift+Up resize shrink height 100 px or 100 ppt
+        bindsym Shift+Right resize grow width 100 px or 100 ppt
+
+        # Fine resize
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Split container
 bindsym $mod+h split h
-
-# Split vertically
 bindsym $mod+v split v
+
+# Rename workspace
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P "rename workspace to: "
+
+# Move focused window to workspace, 'workspace number' is used so workspace names can be renamed
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Switch to next/previous workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Switch workspace, 'workspace number' is used so workspace names can be renamed
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
 
 # Enter full screen mode for focused container
 bindsym $mod+f fullscreen toggle
@@ -44,69 +87,28 @@ bindsym $mod+e layout toggle split
 # Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+# Use Mouse+$mod to drag floating windows to their wanted position.
+floating_modifier $mod
+
 # Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
 # Focus the parent container
 bindsym $mod+a focus parent
 
-# Focus the child container
-#bindsym $mod+d focus child
-
-# Switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart        # restart i3 inplace
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
 
-# Resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym Shift+Left resize shrink width 100 px or 100 ppt
-        bindsym Shift+Down resize grow height 100 px or 100 ppt
-        bindsym Shift+Up resize shrink height 100 px or 100 ppt
-        bindsym Shift+Right resize grow width 100 px or 100 ppt
-
-        # Fine resize
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # Back to default mode
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+# Start i3bar to display a workspace bar
+bar {
+        status_command i3status
 }
 
-# System controls (lock, exit, suspend, hibernate, poweroff, reboot)
+# System controls
 set $power (l)ock (e)xit (s)uspend (h)ibernate (p)oweroff (r)eboot
 bindsym $mod+Escape mode "$power"
 mode "$power" {
@@ -121,19 +123,23 @@ mode "$power" {
 	bindsym Escape mode "default"
 }
 
-# Lock after 3 minutes of inactivity and hibernate 15 minutes after lock
-exec --no-startup-id xautolock -secure -detectsleep -killtime 15 -killer /home/leoxiong/.config/i3/power.sh hibernate -time 3 -locker /home/leoxiong/.config/i3/power.sh lock
-
-# Backlight
-bindcode 232 exec xbacklight -6
-bindcode 233 exec xbacklight +6
-
 # Volume
 bindcode 121 exec amixer -q -D pulse set Master toggle
 bindcode 122 exec amixer -q set Master 5%- && amixer -q -D pulse set Master unmute
 bindcode 123 exec amixer -q set Master 5%+ && amixer -q -D pulse set Master unmute
 
-# Start i3bar to display a workspace bar
-bar {
-        status_command i3status
-}
+# Backlight
+bindcode 232 exec xbacklight -6
+bindcode 233 exec xbacklight +6
+
+# Lock after 3 minutes of inactivity
+exec --no-startup-id xautolock -secure -detectsleep -time 3 -locker "/home/leoxiong/.config/i3/power.sh lock"
+
+# Hide borders to save a couple of pixels
+hide_edge_borders both
+
+# Do not change focus when mouse enters new window
+focus_follows_mouse no
+
+# Quick switch
+workspace_auto_back_and_forth yes
